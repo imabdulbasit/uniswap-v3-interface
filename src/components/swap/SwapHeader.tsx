@@ -28,3 +28,7 @@ export default function SwapHeader({ allowedSlippage }: { allowedSlippage: Perce
     </StyledSwapHeader>
   )
 }
+
+export function SwapSetting({ allowedSlippage }: { allowedSlippage: Percent }) {
+  return <SettingsTab placeholderSlippage={allowedSlippage} />
+}

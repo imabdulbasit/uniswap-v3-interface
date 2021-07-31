@@ -23,11 +23,11 @@ import Row from '../Row'
 import { Dots } from '../swap/styleds'
 import Web3Status from '../Web3Status'
 import NetworkCard from './NetworkCard'
+import { SwapSetting } from '../swap/SwapHeader'
 import UniBalanceContent from './UniBalanceContent'
-
 const HeaderFrame = styled.div<{ showBackground: boolean }>`
   display: grid;
-  grid-template-columns: 120px 1fr 120px;
+  grid-template-columns: 0px 1fr 120px;
   align-items: center;
   justify-content: space-between;
   align-items: center;
@@ -45,7 +45,7 @@ const HeaderFrame = styled.div<{ showBackground: boolean }>`
   box-shadow: 0px 0px 0px 1px ${({ theme, showBackground }) => (showBackground ? theme.bg2 : 'transparent;')};
   transition: background-position 0.1s, box-shadow 0.1s;
   background-blend-mode: hard-light;
-
+  border-bottom: 1px solid #c4c4c4;
   ${({ theme }) => theme.mediaWidth.upToLarge`
     grid-template-columns: 48px 1fr 1fr;
   `};
@@ -83,8 +83,7 @@ const HeaderElement = styled.div`
 `
 
 const HeaderLinks = styled(Row)`
-  justify-self: center;
-  background-color: ${({ theme }) => theme.bg0};
+  justify-self: flex-left;
   width: fit-content;
   padding: 4px;
   border-radius: 16px;
@@ -93,6 +92,8 @@ const HeaderLinks = styled(Row)`
   grid-gap: 10px;
   overflow: auto;
   align-items: center;
+  position: relative;
+  left: 70px;
   ${({ theme }) => theme.mediaWidth.upToLarge`
     justify-self: start;  
     `};
@@ -190,23 +191,23 @@ const StyledNavLink = styled(NavLink).attrs({
   outline: none;
   cursor: pointer;
   text-decoration: none;
-  color: ${({ theme }) => theme.text2};
+  color: #ffffff;
   font-size: 1rem;
   width: fit-content;
-  font-weight: 500;
+  font-weight: 200;
   padding: 8px 12px;
   word-break: break-word;
 
   &.${activeClassName} {
     border-radius: 12px;
     font-weight: 600;
-    color: ${({ theme }) => theme.text1};
-    background-color: ${({ theme }) => theme.bg2};
+    color: #ffffff;
   }
 
   :hover,
   :focus {
-    color: ${({ theme }) => darken(0.1, theme.text1)};
+    color: #ffffff;
+    font-weight: 400;
   }
 `
 
@@ -219,22 +220,23 @@ const StyledExternalLink = styled(ExternalLink).attrs({
   outline: none;
   cursor: pointer;
   text-decoration: none;
-  color: ${({ theme }) => theme.text2};
+  color: #ffffff;
   font-size: 1rem;
   width: fit-content;
   margin: 0 12px;
-  font-weight: 500;
+  font-weight: 200;
 
   &.${activeClassName} {
     border-radius: 12px;
     font-weight: 600;
-    color: ${({ theme }) => theme.text1};
+    color: #ffffff;
   }
 
   :hover,
   :focus {
-    color: ${({ theme }) => darken(0.1, theme.text1)};
+    color: #ffffff;
     text-decoration: none;
+    font-weight: 400;
   }
 `
 
@@ -264,7 +266,7 @@ export default function Header() {
       </Modal>
       <Title href=".">
         <UniIcon>
-          <img width={'24px'} src={darkMode ? LogoDark : Logo} alt="logo" />
+          <img width={'56px'} height={'56px'} src={darkMode ? LogoDark : Logo} alt="logo" />
         </UniIcon>
       </Title>
       <HeaderLinks>
@@ -294,9 +296,9 @@ export default function Header() {
           <sup>↗</sup>
         </StyledExternalLink>
       </HeaderLinks>
-
       <HeaderControls>
         <NetworkCard />
+        {/* <SwapSetting></SwapSetting> */}
         <HeaderElement>
           {availableClaim && !showClaimPopup && (
             <UNIWrapper onClick={toggleClaimModal}>

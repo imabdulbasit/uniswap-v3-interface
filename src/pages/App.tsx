@@ -29,11 +29,16 @@ import Swap from './Swap'
 import { OpenClaimAddressModalAndRedirectToSwap, RedirectPathToSwapOnly, RedirectToSwap } from './Swap/redirects'
 import Vote from './Vote'
 import VotePage from './Vote/VotePage'
-
+import background from '../assets/images/pepe-bg.png'
 const AppWrapper = styled.div`
   display: flex;
   flex-flow: column;
   align-items: flex-start;
+  background-image: url(${background});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height: 100vh;
 `
 
 const BodyWrapper = styled.div`
